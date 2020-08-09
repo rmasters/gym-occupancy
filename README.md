@@ -10,6 +10,8 @@ My [local rock climbing gym](https://thereach.org.uk/) provides real-time occupa
     a.  A dashboard will already have been configured in Grafana - head to Dashboards, Manage, and then "Gym occupancy").
     b.  If you're not seeing data, check `docker-compose logs -f populator`.
 
+![Screenshot of Grafana dashboard, displaying occupancy over time, current occupancy and a percentage of capacity](./dashboard-screenshot.png)
+
 ## Tech details, or how to adapt this to your needs
 
 I'm using StatsD for simple metric collection, Graphite for storage and Grafana for visualisations. This means that tracking a different website is as simple as writing a scraping script (like fetch.py) and printing StatsD metrics to stdout, piped to `netcat`. For example, this is how I use fetch.py (where `graphite:8125` is the network location of the `graphite` docker-compose container):
