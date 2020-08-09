@@ -1,0 +1,31 @@
+version: '3.4'
+
+services:
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - 3000:3000
+    environment:
+      GF_AUTH_ANONYMOUS_ENABLED: 'true'
+      GF_AUTH_ANONYMOUS_ORG_ROLE: Admin
+    volumes:
+      - './data/grafana:/var/lib/grafana'
+      - './grafana/provisioning:/etc/grafana/provisioning'
+    depends_on:
+      - graphite
+
+  # Statsd metric collector and graphite storage engine
+  graphite:
+    image: graphiteapp/graphite-statsd
+    volumes:
+      - './data/graphite:/opt/graphite/storage'
+    ports:
+      - 8000:80
+
+  populator:
+    build: .
+    command: bash -c 'while true; do poetry run python fetch.py 2> /dev/null | nc -u -w1 graphite 8125; sleep 60; done'
+    volumes:
+      - './:/app'
+    depends_on:
+      - graphite
