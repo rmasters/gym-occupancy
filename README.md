@@ -7,8 +7,8 @@ My [local rock climbing gym](https://thereach.org.uk/) provides real-time occupa
 1.  Pull the repo and build the Docker image with `docker-compose build`
 2.  Start services with `docker-compose up -d`
 3.  Head to [localhost:8000](http://localhost:8000) for the Graphite app (for finding metrics) and [localhost:3000](http://localhost:3000) for the Grafana app (for visualising metrics).
-    a.  A dashboard will already have been configured in Grafana - head to Dashboards, Manage, and then "Gym occupancy").
-    b.  If you're not seeing data, check `docker-compose logs -f populator`.
+    1.  A dashboard will already have been configured in Grafana - head to Dashboards, Manage, and then "Gym occupancy").
+    2.  If you're not seeing data, check `docker-compose logs -f populator`.
 
 ![Screenshot of Grafana dashboard, displaying occupancy over time, current occupancy and a percentage of capacity](./dashboard-screenshot.png)
 
