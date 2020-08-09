@@ -143,8 +143,8 @@ if __name__ == "__main__":
         occupancy_pc = (occupancy['occupancy'] / occupancy['capacity']) * 100
 
         # Name format: gym.{name}.{metric} - name will be whatever key was in the var data declaration (in this case, AAA)
-        # The name can be referenced from graphite via: statsd.gauges.gym.{name}.{metric}, e.g.:
-        # statsd.gauges.gym.AAA.occupancy_pc
+        # The name can be referenced from graphite via: stats.gauges.gym.{name}.{metric}, e.g.:
+        # stats.gauges.gym.AAA.occupancy_pc
         print(f"gym.{name}.occupancy:{occupancy['occupancy']}|g")
         print(f"gym.{name}.capacity:{occupancy['capacity']}|g")
         print(f"gym.{name}.occupancy_pc:{occupancy_pc}|g")
