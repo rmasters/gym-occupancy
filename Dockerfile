@@ -8,7 +8,7 @@ WORKDIR /app/
 COPY pyproject.toml poetry.lock /app/
 RUN poetry install
 
-COPY . /app/
+COPY fetch.py /app/
 
 ENTRYPOINT ["poetry", "run"]
 
